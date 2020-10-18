@@ -5,7 +5,7 @@
 - 本函数库属于JQuery的扩展函数库，本函数库的诞生是为了针对页面功能的实现便捷性
 - 所有方法都能通过jf.来调用，部分方法能够直接使用JQuery选择器来调用
 ## 二、API
-#### 1. typeAll(objs,index)方法，可以通过jq调用
+#### 1. typeAll(objs,index)方法
 
 尝试返回一个对象的类型，也可以是一个html组件
 
@@ -32,7 +32,7 @@
   ```js
   $(".f_html").typeAll(index);
   ```
-#### 2. typeArray(objs)方法，可以通过jq调用
+#### 2. typeArray(objs)方法
 
 以数组的方式返回多个对象的类型
 
@@ -72,7 +72,7 @@
   jf.getStringPair(str); //返回结果：["name:'jFast'", "ver='1.0.0'"]
   ```
 
-#### 4. inputRegAlert(sor,iden,alertInfo)方法，可以通过jq调用
+#### 4. inputRegAlert(sor,iden,alertInfo)方法
 
 验证输入框内容是否符合规则，符合不显示或去除提示返回true，否则显示提示信息返回false
 
@@ -86,7 +86,7 @@
   $("#phone").inputRegAlert("phone","手机号格式错误");
   ```
 
-#### 5. inputAlert(sor,condition,alertInfo)方法，可以通过jq调用
+#### 5. inputAlert(sor,condition,alertInfo)方法
 
 接收一个Boolean条件值，如果为false在选中元素后提示信息，否则不显示或去除信息
 
@@ -100,7 +100,7 @@
   $("#phone").inputAlert(true,"手机格式错误");
   ```
 
-#### 6. checkInputValueAlert(sor,value,alertInfo)方法，可以通过jq调用
+#### 6. checkInputValueAlert(sor,value,alertInfo)方法
 
 判断输入框中的值是否与传入的值相同，不同则在选中元素后提示信息
 
