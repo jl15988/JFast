@@ -1,0 +1,22 @@
+{
+  "name": "jfast",
+  "version": "2.0.0",
+  "description": "\u001b[Ca function library based on jquery",
+  "main": "jfast.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jl15988/jfast.git"
+  },
+  "keywords": [
+    "jfast"
+  ],
+  "author": "jl15988",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jl15988/jfast/issues"
+  },
+  "homepage": "https://github.com/jl15988/jfast#readme"
+}
