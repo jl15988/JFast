@@ -1,22 +1,50 @@
 {
-  "name": "jfast",
-  "version": "2.0.0",
-  "description": "\u001b[Ca function library based on jquery",
-  "main": "jfast.min.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "_from": "jfast",
+  "_id": "jfast@2.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-HRDNWFlTYgxWiMCincPWNeYgZ+sYquaZCefmKRSeJCtACLDctg9T58FclgCBKZKjcE3ek4CefkZ+fMguXINBbQ==",
+  "_location": "/jfast",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "jfast",
+    "name": "jfast",
+    "escapedName": "jfast",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
   },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/jfast/-/jfast-2.0.2.tgz",
+  "_shasum": "ada583916f4619d92b402973a94effe669a58f68",
+  "_spec": "jfast",
+  "_where": "C:\\Users\\jl15988\\Desktop\\新建文件夹",
+  "author": {
+    "name": "jl15988"
+  },
+  "bugs": {
+    "url": "https://github.com/jl15988/jfast/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "\u001b[Ca function library based on jquery",
+  "homepage": "https://github.com/jl15988/jfast#readme",
+  "keywords": [
+    "jfast"
+  ],
+  "license": "ISC",
+  "main": "jfast.min.js",
+  "name": "jfast",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jl15988/jfast.git"
   },
-  "keywords": [
-    "jfast"
-  ],
-  "author": "jl15988",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jl15988/jfast/issues"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/jl15988/jfast#readme"
+  "version": "2.0.2"
 }

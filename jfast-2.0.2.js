@@ -1,15 +1,12 @@
-/**
- * The name of this function library is JFast,final revision date is 2020-10-18
- * The name of developer of the JFast is jl15988
- */
-!(function(j) {
+/* JFast v2.0.2 | (c) by jl15988 | Updated 2020-10-23 */ !(function(j) {
+	"use strict";
 	var jt = function(e, t) {
 		return new jt.n.init(e, t);
 	};
 	//原型替换为n
 	jt.n = jt.prototype = {
 		constructor: jt,
-		version: "2.0.0",
+		JFast: "2.0.2",
 		typeAll: function(index) {
 			return jt.typeAll(this, index);
 		},
@@ -22,23 +19,23 @@
 		inputAlert: function(condition, alertInfo) {
 			return jt.inputAlert(this, condition, alertInfo);
 		},
-		checkInputValue: function(value, alertInfo) {
-			return jt.checkInputValue(this, value, alertInfo);
+		checkInputValueAlert: function(value, alertInfo) {
+			return jt.checkInputValueAlert(this, value, alertInfo);
 		},
-		getElemMatrixArray:function(){
+		getElemMatrixArray: function() {
 			return jt.getElemMatrixArray(this);
 		},
-		getElemMarginArr:function(){
+		getElemMarginArr: function() {
 			return jt.getElemMarginArr(this);
 		},
-		getElemDeviation:function(){
+		getElemDeviation: function() {
 			return jt.getElemDeviation(this);
 		},
-		mouseBlockMove:function(){
+		mouseBlockMove: function() {
 			return jt.mouseBlockMove(this);
 		},
-		PreviewPhoto:function(preimg,scale){
-			return jt.PreviewPhoto(this,preimg,scale);
+		previewPhoto: function(preimg, scale) {
+			return jt.previewPhoto(this, preimg, scale);
 		}
 	};
 	//为构造函数和原型创建一个e方法，用来容纳方法对象
@@ -53,7 +50,7 @@
 		 * @param {Object} objs 对象
 		 */
 		typeAll: function(objs, index) {
-			try{
+			try {
 				//typeof获取类型
 				let types = typeof objs;
 				if (objs.length > 1) {
@@ -95,7 +92,7 @@
 				} else {
 					return types;
 				}
-			}catch(err){
+			} catch (err) {
 				return objs;
 			}
 		},
@@ -104,7 +101,7 @@
 		 * @param {Object} objs 对象组
 		 */
 		typeArray: function(objs) {
-			try{
+			try {
 				if (typeof objs == "object") {
 					let objtypes = Object.prototype.toString.call(objs).toLowerCase();
 					if (objtypes.indexOf("object") && objtypes.indexOf("element") && objtypes.indexOf("html")) {
@@ -116,7 +113,7 @@
 					}
 				}
 				return typearr;
-			}catch(err){
+			} catch (err) {
 				return objs;
 			}
 		},
@@ -129,11 +126,11 @@
 			var obj = {};
 			try {
 				var kvarr = str.match(/(\'|\")?[^\'\"\,]+(\'|\"\,)?(\=|\:)(\'|\"){1}[^\'\"\,]+(\'|\"){1}/g);
-				return kvarr.map(function(item){
-					let iarr = item.replace(/\'|\"/g,"");
+				return kvarr.map(function(item) {
+					let iarr = item.replace(/\'|\"/g, "");
 					iarr = iarr.split(":");
-					let len = iarr.length-1;
-					obj[iarr[len-1]] = iarr[len];
+					let len = iarr.length - 1;
+					obj[iarr[len - 1]] = iarr[len];
 					return obj;
 				})[0];
 			} catch (err) {
@@ -273,12 +270,12 @@
 		 */
 		moveArrayItem: function(arr, iden, place) {
 			const type = typeof iden;
-			if(!(type==="number"||type === "string"||type === "object")){
+			if (!(type === "number" || type === "string" || type === "object")) {
 				throw new Error("parameter type error");
 			};
-			arr.forEach((item,index)=>{
-				if(index==iden){
-					arr.splice(index,1);
+			arr.forEach((item, index) => {
+				if (index == iden) {
+					arr.splice(index, 1);
 					arr.unshift()
 				}
 			})
@@ -287,32 +284,32 @@
 		 * 返回字符串去除'px'之后的浮点类型
 		 * @param {Object} str
 		 */
-		repx:function(str){
-			return parseFloat(str.replace("px","").trim());
+		repx: function(str) {
+			return parseFloat(str.replace("px", "").trim());
 		},
 		/**
 		 * 如果字符串为空返回0，否则返回第一串数字
 		 * @param {Object} str 字符串
 		 */
-		stringRepxNum:function(str){
-			return str!=null?parseFloat(str.match(/\-?\d+(\.\d+)?/)[0]):0;
+		stringRepxNum: function(str) {
+			return str != null ? parseFloat(str.match(/\-?\d+(\.\d+)?/)[0]) : 0;
 		},
 		/**
 		 * 返回字符串中数字串组成的数组
 		 * @param {Object} str 字符串
 		 */
-		getStringNumArray:function(str){
+		getStringNumArray: function(str) {
 			return str.match(/\-?\d+(\.\d+)?/g);
 		},
 		/**
 		 * 返回选中元素的2d矩阵数组
 		 * @param {Object} sor
 		 */
-		getElemMatrixArray:function(sor){
-			try{
+		getElemMatrixArray: function(sor) {
+			try {
 				var matrix = sor.css("transform");
 				return this.getStringNumArray(matrix);
-			}catch(err){
+			} catch (err) {
 				throw new Error(err);
 			}
 		},
@@ -320,23 +317,26 @@
 		 * 返回元素的margin数值数组
 		 * @param {Object} sor
 		 */
-		getElemMarginArr:function(sor){
-			var narr = ['','','',''];
+		getElemMarginArr: function(sor) {
+			var narr = ['', '', '', ''];
 			var minit = sor.css("margin");
-			var marr = minit.replace(/ /g,"").split("px");
-			marr.forEach(function(item,index){
-				item!=""?(marr[index] = parseFloat(item)):marr.splice(index,1);
+			var marr = minit.replace(/ /g, "").split("px");
+			marr.forEach(function(item, index) {
+				item != "" ? (marr[index] = parseFloat(item)) : marr.splice(index, 1);
 			});
-			switch(marr.length){
-				case 1:return narr.map(function(item){
-					return marr[0];
-				});
-				case 2:return narr.map(function(item,index){
-					return index<=1?marr[0]:marr[1];
-				});
-				case 3:return narr.map(function(item,index){
-					return index==3?marr[1]:marr[index];
-				});
+			switch (marr.length) {
+				case 1:
+					return narr.map(function(item) {
+						return marr[0];
+					});
+				case 2:
+					return narr.map(function(item, index) {
+						return index <= 1 ? marr[0] : marr[1];
+					});
+				case 3:
+					return narr.map(function(item, index) {
+						return index == 3 ? marr[1] : marr[index];
+					});
 			}
 			return marr;
 		},
@@ -344,57 +344,71 @@
 		 * 返回元素的偏移距离
 		 * @param {Object} sor 选中的元素
 		 */
-		getElemDeviation:function(sor){
+		getElemDeviation: function(sor) {
 			var matrixArr = this.getElemMatrixArray(sor);
 			var marr = this.getElemMarginArr(sor);
-			var tX = 0,tY = 0;
-			if(matrixArr!=null){
+			var tX = 0,
+				tY = 0;
+			if (matrixArr != null) {
 				tX = matrixArr[4];
 				tY = matrixArr[5];
 			}
-			return {devTop:marr[0]+tY,devLeft:marr[3]+tX};
+			return {
+				devTop: marr[0] + tY,
+				devLeft: marr[3] + tX
+			};
 		},
 		/**
 		 * 使元素能够通过鼠标移动
 		 * @param {Object} sor 选中元素
 		 */
-		mouseBlockMove:function(sor){
+		mouseBlockMove: function(sor) {
 			var f_head = sor.find(".f_head");
 			var psor = sor;
 			//如果有指定子项则替换sor
-			if(f_head.length==1){
+			if (f_head.length == 1) {
 				sor = f_head;
 			}
-			try{
+			try {
 				var devTop = this.getElemDeviation(psor).devTop;
 				var devLeft = this.getElemDeviation(psor).devLeft;
-				sor.css({"cursor":"move"});
-				psor.css({"position":"fixed"});
+				sor.css({
+					"cursor": "move"
+				});
+				psor.css({
+					"position": "fixed"
+				});
 				//鼠标按下
-				sor.mousedown(function(e){
+				sor.mousedown(function(e) {
 					e.preventDefault();
 					let oX = e.clientX - psor[0].offsetLeft;
 					let oY = e.clientY - psor[0].offsetTop;
 					//鼠标移动
-					$(document).mousemove(function(e){
+					$(document).mousemove(function(e) {
 						e.preventDefault();
 						let cX = e.clientX;
 						let cY = e.clientY;
-						cY = cY<=0?0:cY;
-						cX = cX<=0?0:cX;
+						cY = cY <= 0 ? 0 : cY;
+						cX = cX <= 0 ? 0 : cX;
 						//修改位置
-						psor.css({"top":cY-oY-devTop,"left":cX-oX-devLeft});
+						psor.css({
+							"top": cY - oY - devTop,
+							"left": cX - oX - devLeft
+						});
 					});
 					//鼠标松开
-					sor.mouseup(function(){
+					sor.mouseup(function() {
 						//移除事件处理
 						$(document).off("mousemove");
 						sor.off("mouseup");
 					});
 				});
 				//返回选中元素
-				return psor!=sor?{psor:psor,sor:sor}:sor;
-			}catch(err){
+				return psor != sor ? {
+					psor: psor,
+					sor: sor
+				} : sor;
+			} catch (err) {
 				throw new Error(err);
 			}
 		},
@@ -404,76 +418,122 @@
 		 * @param {Object} preimg 预览图地址
 		 * @param {Object} scale 放大倍数，最小1.5，最大5
 		 */
-		PreviewPhoto:function(sor,preimg,scale){
+		previewPhoto: function(sor, preimg, scale) {
 			var pb = $(".f_preview");
 			var slider = $(".f_slider");
-			if(pb.length==0){
+			if (pb.length == 0) {
 				throw new Error("no block class is 'f_preview'");
 			};
-			if(slider.length==0){
+			if (slider.length == 0) {
 				throw new Error("no block class is 'f_slider'");
 			};
-			if(!preimg){
+			if (!preimg) {
 				throw new Error("preimg is null");
 			};
 			//最小倍数为1.5，默认为2
-			if(!scale||scale<1.5||scale>5){
+			if (!scale || scale < 1.5 || scale > 5) {
 				scale = 2;
 			};
-			var repx = function(str){return jt.repx(str)};
-			var s = scale*100;
+			var repx = function(str) {
+				return jt.repx(str)
+			};
+			var s = scale * 100;
 			//选取元素的宽高
 			var w = sor.css("width");
 			var h = sor.css("height");
 			//当pb有边框时扩大倍数
-			var bw = pb.css("box-sizing")=="border-box"?repx(pb.css("border")):0;
-			s = (s*repx(w)+scale*bw*2*100)/repx(w);
+			var bw = pb.css("box-sizing") == "border-box" ? repx(pb.css("border")) : 0;
+			s = (s * repx(w) + scale * bw * 2 * 100) / repx(w);
 			//slider的宽高
-			var zw = repx(w)/scale;
-			var zh = repx(h)/scale;
+			var zw = repx(w) / scale;
+			var zh = repx(h) / scale;
 			//初始化样式
-			slider.css({"width":zw,"height":zh,"cursor":"move"});
-			pb.css({"position":"absolute"});
-			sor.css({"position":"relative"});
+			slider.css({
+				"width": zw,
+				"height": zh,
+				"cursor": "move"
+			});
+			pb.css({
+				"position": "absolute"
+			});
+			sor.css({
+				"position": "relative"
+			});
 			//鼠标移入移出样式
-			sor.hover(function(){
-				$(".f_preview").css("display","block");
-				$(".f_slider").css("display","block");
-			},function(){
-				$(".f_preview").css("display","none");
-				$(".f_slider").css({"display":"none"});
+			sor.hover(function() {
+				$(".f_preview").css("display", "block");
+				$(".f_slider").css("display", "block");
+			}, function() {
+				$(".f_preview").css("display", "none");
+				$(".f_slider").css({
+					"display": "none"
+				});
 			});
 			//鼠标移动
-			sor.mouseover(function(){
-				$(document).mousemove(function(e){
+			sor.mouseover(function() {
+				$(document).mousemove(function(e) {
 					e.preventDefault();
 					//鼠标相对位置
-					var x = e.clientX-sor[0].offsetLeft - zw/2;
-					var y = e.clientY-sor[0].offsetTop - zh/2;
+					var x = e.clientX - sor[0].offsetLeft - zw / 2;
+					var y = e.clientY - sor[0].offsetTop - zh / 2;
 					//选中元素边框宽度*2
-					var sw = sor.css("box-sizing")=="border-box"?repx(pb.css("border"))*2:0;
+					var sw = sor.css("box-sizing") == "border-box" ? repx(pb.css("border")) * 2 : 0;
 					//禁止滑块超出范围
-					if(x<=0){
-						x=0;
-					}else if(x>=zw*(scale-1)-sw){
-						x=zw*(scale-1)-sw;
+					if (x <= 0) {
+						x = 0;
+					} else if (x >= zw * (scale - 1) - sw) {
+						x = zw * (scale - 1) - sw;
 					}
-					if(y<=0){
-						y=0;
-					}else if(y>=zh*(scale-1)-sw){
-						y=zh*(scale-1)-sw;
+					if (y <= 0) {
+						y = 0;
+					} else if (y >= zh * (scale - 1) - sw) {
+						y = zh * (scale - 1) - sw;
 					}
 					//slider位置
-					$(".f_slider").css({"position":"absolute","top":y,"left":x});
+					$(".f_slider").css({
+						"position": "absolute",
+						"top": y,
+						"left": x
+					});
 					//背景位置
-					var p = "-"+(x*scale)+"px -"+(y*scale)+"px";
-					pb.css({"background":"url("+preimg+") "+p+"/"+s+"% "+s+"% no-repeat"});
+					var p = "-" + (x * scale) + "px -" + (y * scale) + "px";
+					pb.css({
+						"background": "url(" + preimg + ") " + p + "/" + s + "% " + s + "% no-repeat"
+					});
 				});
 				//解绑
-				sor.mouseout(function(){
+				sor.mouseout(function() {
 					$(document).off("mousemove");
 				});
 			});
+		},
+		/**
+		 * 提示信息
+		 * @param {Object} info
+		 */
+		msg: function(info) {
+			//为每个页面最后添加一个span用来做信息提示
+			var $msg = $('<span class="msg"></span>');
+			$('body').append($msg);
+			$(".msg").text(info);
+			$(".msg").show().delay(2000).fadeOut(function() {
+				$(".msg").remove();
+			});
+		},
+		/**
+		 * 打开全局遮罩层
+		 */
+		maskOver: function() {
+			var $mask = $(
+				'<div class="mask" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:1000;background:rgba(0,0,0,.4);"></div>'
+			)
+			$('body').append($mask);
+		},
+		/**
+		 * 移除全局遮罩层
+		 */
+		maskOut: function() {
+			$('.mask').remove();
 		}
 	});
 	var init = jt.n.init = function(e, t) {};
@@ -481,9 +541,10 @@
 	try {
 		jt.n.init = $.fn.init;
 		$.fn = Object.assign($.fn, jt.n);
-	} catch(err) {
+		delete $.fn.JFast;
+	} catch (err) {
 		console.warn("No JQuery file was introduced");
-	}finally{
+	} finally {
 		//将jt构造函数暴露
 		j.jf = jt;
 	};
